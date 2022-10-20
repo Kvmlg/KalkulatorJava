@@ -2,11 +2,14 @@ package com.jsfcourse.calc;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ResourceBundle;
 
 @Named
 @RequestScoped
@@ -17,6 +20,23 @@ public class CreditBB {
 	private String z;
 	private Double result;
 
+	@Inject
+	@ManagedProperty("#{txtCalcErr}")
+	private ResourceBundle txtCalcErr;
+
+	// Resource injected
+	@Inject
+	@ManagedProperty("#{txtCalc}")
+	private ResourceBundle txtCalc;
+
+	@PostConstruct
+	public void postConstruct() {
+		// loading resource (notice the full "file" name)
+		FacesContext context = FacesContext.getCurrentInstance();
+		txtCalc = ResourceBundle.getBundle("resources.textCalc", context.getViewRoot().getLocale());
+		txtCalcErr = ResourceBundle.getBundle("resources.textCalcErr", context.getViewRoot().getLocale());
+	}
+	
 	@Inject
 	FacesContext ctx;
 

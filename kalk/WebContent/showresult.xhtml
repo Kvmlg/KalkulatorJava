@@ -6,13 +6,13 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-	<title>Wynik</title>
+	<title>#{txtCalc.result}</title>
 </h:head>
 <h:body>
 	<h:messages />
-	wynik: #{creditBB.result}
+	#{txtCalc.result} : #{creditBB.result} 
 	<h:form>
-		<p:commandButton value="Powrót" action="index" />
+		<p:commandButton value="#{txtCalc.button3}" action="index" />
 	</h:form>
 </h:body>
 </html>

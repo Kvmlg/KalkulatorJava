@@ -6,30 +6,30 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-	<title>Kalkulator ratalny</title>
+	<title>#{txtCalc.projectName}</title>
 </h:head>
 <h:body>
 
-	<h1>Wylicz rate swojego kredytu</h1>
+	<h1>#{txtCalc.projectTopics}</h1>
 
 	<h:form id="bla">
 	<h:panelGrid id="grid" columns="3" cellpadding="6">
 	
-		<p:outputLabel for="kwota" value="Kwota:"/>
-  		<p:inputText value="#{creditBB.x}" id="kwota" required="true" requiredMessage="Podaj kwote"/>
+		<p:outputLabel for="kwota" value="#{txtCalc.valueX}"/>
+  		<p:inputText value="#{creditBB.x}" id="kwota" required="true" requiredMessage="Kwota: #{txtCalcErr.calcParamRequired}"/>
   		<p:messages for="kwota"/>
   		
-		<p:outputLabel for="mies" value="Ilość miesięcy:"/>
-  		<p:inputText value="#{creditBB.y}" id="mies" required="true" requiredMessage="Podaj ilosc miesiecy"/>
+		<p:outputLabel for="mies" value="#{txtCalc.valueY}"/>
+  		<p:inputText value="#{creditBB.y}" id="mies" required="true" requiredMessage="Miesiac: #{txtCalcErr.calcParamRequired}"/>
   		<p:messages for="mies"/>
   		
-		<p:outputLabel for="opro" value="Oprocentowanie:"/>
-		<p:inputText value="#{creditBB.z}" id="opro" required="true" requiredMessage="Podaj oprocentowanie"/>
+		<p:outputLabel for="opro" value="#{txtCalc.valueZ}"/>
+		<p:inputText value="#{creditBB.z}" id="opro" required="true" requiredMessage="Oprocentowanie: #{txtCalcErr.calcParamRequired}"/>
 		<p:messages for="opro" />
 		
 
-		<p:commandButton value="Wylicz" action="#{creditBB.calc()}" update="@form"/>
-		<p:commandButton value="Wylicz (AJAX)" action="#{creditBB.calc_AJAX()}" update="msg"/>
+		<p:commandButton value="#{txtCalc.button1}" action="#{creditBB.calc()}" update="@form"/>
+		<p:commandButton value="#{txtCalc.button2}" action="#{creditBB.calc_AJAX()}" update="msg"/>
 
 		<br />
 	</h:panelGrid>
