@@ -11,20 +11,22 @@
 <h:body>
 
 	<h:form>
-			<h:panelGrid id="grid" columns="2" cellpadding="5" styleClass="bottom-space">
-				<p:outputLabel for="login" value="login:" />
-				<p:inputText id="login" value="#{loginBB.login}"
-					required="true"	requiredMessage="podaj login"/>
-				<p:outputLabel for="pass" value="hasło:" />
-				<p:password id="pass" value="#{loginBB.pass}"
-				required="true"	requiredMessage="podaj hasło"/>
-			</h:panelGrid>
-		
-			<p:messages id="msg"/>
-		
-			<p:commandButton value="Zaloguj" action="#{loginBB.doLogin()}" update="msg"/>
+		<h:panelGrid id="grid" columns="2" cellpadding="5"
+			styleClass="bottom-space">
+			<p:outputLabel for="login" value="login:" />
+			<p:inputText id="login" value="#{loginBB.login}" required="true"
+				requiredMessage="podaj login" />
+			<p:outputLabel for="pass" value="hasło:" />
+			<p:password id="pass" value="#{loginBB.pass}" required="true"
+				requiredMessage="podaj hasło" />
+		</h:panelGrid>
 
-		</h:form>
+		<p:messages id="msg" />
+
+		<p:commandButton value="Zaloguj" action="#{loginBB.doLogin()}"
+			update="msg" />
+
+	</h:form>
 
 </h:body>
 </html>
