@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>#{txtCalc.projectName}</title>
+</h:head>
+<h:body>
+
+	<h1>#{txtCalc.projectTopics}</h1>
+
+	<h:outputText
+		value="Zalogowany: #{remoteClient.details.name} #{remoteClient.details.surname}" style="float:right;" />
+		<br/>
+	<h:form style=" float:right;">
+		<p:commandButton value="Wyloguj" action="#{loginBB.doLogout()}" />
+	</h:form>
+
+	<h:form id="bla">
+	<h:panelGrid id="grid" columns="3" cellpadding="6">
+	
+		<p:outputLabel for="kwota" value="#{txtCalc.valueX}"/>
+  		<p:inputText value="#{creditBB.x}" id="kwota" required="true" requiredMessage="Kwota: #{txtCalcErr.calcParamRequired}"/>
+  		<p:messages for="kwota"/>
+  		
+		<p:outputLabel for="mies" value="#{txtCalc.valueY}"/>
+  		<p:inputText value="#{creditBB.y}" id="mies" required="true" requiredMessage="Miesiac: #{txtCalcErr.calcParamRequired}"/>
+  		<p:messages for="mies"/>
+  		
+		<p:outputLabel for="opro" value="#{txtCalc.valueZ}"/>
+		<p:inputText value="#{creditBB.z}" id="opro" required="true" requiredMessage="Oprocentowanie: #{txtCalcErr.calcParamRequired}"/>
+		<p:messages for="opro" />
+		
+
+		<p:commandButton value="#{txtCalc.button1}" action="#{creditBB.calc()}" update="@form"/>
+		<p:commandButton value="#{txtCalc.button2}" action="#{creditBB.calc_AJAX()}" update="msg"/>
+
+		<br />
+	</h:panelGrid>
+	<p:messages id="msg"/>
+	</h:form>
+
+</h:body>
+</html>
