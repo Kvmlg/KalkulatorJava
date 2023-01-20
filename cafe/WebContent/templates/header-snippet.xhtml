@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+	<header id="menuhead">
+		<a href="/cafe" id="logo">
+		<h:graphicImage id="logopic" value = "#{resource['template:img/cafe100.png']}" alt="Logo" ></h:graphicImage>  
+		</a>
+
+		<ul id="menu">
+			<li><a href="/cafe">Start</a></li>
+			<li><a href="/cafe#mennu">Menu</a></li>
+			<li><a href="/cafe#offert">Galeria</a></li>
+			<li><a href="/cafe#footer">Kontakt</a></li>
+			<li>
+			
+			<c:choose>
+    		<c:when test="#{remoteClient.details.role == 'user'}">
+        	<p>Witaj, <br/>
+        		<h:outputText
+				value="#{remoteClient.details.name} "/>
+        	</p>
+        	<li>
+        	<h:form style="display:inline;">
+        	<h:commandLink action="#{loginBB.doLogout()}"><h:graphicImage id="logoutpic" value = "#{resource['template:img/logout.png']}" alt="logout" ></h:graphicImage></h:commandLink>
+        	</h:form>
+        	</li>
+        	
+        	<li>
+        	<h:form style="display:inline;">
+        	<a href="/cafe/pages/users/orderHistory.xhtml"><h:graphicImage id="logoutpic" value = "#{resource['template:img/history.png']}" alt="logout" ></h:graphicImage></a>
+        	</h:form>
+        	</li>
+        	<li><p><a href="/cafe/pages/users/cart.xhtml"><h:graphicImage id="cartpic" value = "#{resource['template:img/cart.png']}" alt="cart" ></h:graphicImage></a></p></li>
+    		</c:when>
+    		<c:when test="#{remoteClient.details.role == 'admin'}">
+    		    <p>Witaj, <br/>
+        		<h:outputText
+				value="#{remoteClient.details.name} "/>
+        	</p>
+        	<li>
+        	<h:form style="display:inline;">
+        	<h:commandLink action="#{loginBB.doLogout()}"><h:graphicImage id="logoutpic" value = "#{resource['template:img/logout.png']}" alt="logout" ></h:graphicImage></h:commandLink>
+        	</h:form>
+        	</li>
+        	<li><p><a href="/cafe/pages/admin/adminPage.xhtml"><h:graphicImage id="cartpic" value = "#{resource['template:img/admin.png']}" alt="cart" ></h:graphicImage></a></p></li>
+    		</c:when>
+   			<c:otherwise>
+       		<p><a href="/cafe/login.xhtml"><h:graphicImage id="loginpic" value = "#{resource['template:img/user.png']}" alt="Logo" ></h:graphicImage></a></p>
+    		</c:otherwise>
+			</c:choose>
+			
+			
+			</li>
+			
+		</ul>
+	</header>
+</ui:composition>

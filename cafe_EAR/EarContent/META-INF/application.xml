@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_8.xsd" id="Application_ID" version="8">
+  <display-name>cafe_EAR</display-name>
+  <module>
+    <web>
+      <web-uri>cafe.war</web-uri>
+      <context-root>cafe</context-root>
+    </web>
+  </module>
+  <module>
+    <ejb>cafe_EJB.jar</ejb>
+  </module>
+</application>

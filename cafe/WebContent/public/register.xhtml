@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Rejestracja</title>
+	<h:outputStylesheet name="css/style.css" library="template" />
+	<link type="image/x-icon" rel="shortcut icon"
+		href="#{resource['template:img/cafe.png']}" />
+</h:head>
+<header id="menuhead">
+		<a href="/cafe" id="logo">
+		<h:graphicImage id="logopic" value = "#{resource['template:img/cafe100.png']}" alt="Logo" ></h:graphicImage>  
+		</a>
+
+		<ul id="menu">
+			<li><a href="/cafe#start">Start</a></li>
+			<li><a href="/cafe#mennu">Menu</a></li>
+			<li><a href="/cafe#offert">Galeria</a></li>
+			<li><a href="/cafe#footer">Kontakt</a></li>
+			<li><a href="/cafe/login.xhtml"><h:graphicImage id="loginpic" value = "#{resource['template:img/user.png']}" alt="Logo" ></h:graphicImage></a></li>
+		</ul>
+	</header>
+<h:body>
+		<div id="loginbg">
+<div id="login">
+  
+  <h:form>
+
+    <h:inputText type="text"  value="#{userBB.name}" class="text"  p:placeholder="Imie"  required="true" requiredMessage="podaj imie"/>
+    <br/>
+    <h:inputText type="text"  value="#{userBB.surname}" class="text"  p:placeholder="Nazwisko"  required="true" requiredMessage="podaj surname"/>
+    <br/>
+    <h:inputText type="text"  value="#{userBB.email}" class="text"  p:placeholder="E-mail"  required="true" requiredMessage="podaj email" validatorMessage="Zły format maila"><f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"/></h:inputText>
+    <br/>
+    <h:inputSecret type="password" value="#{userBB.password}" class="text"  p:placeholder="Password"  required="true" requiredMessage="podaj hasło" validatorMessage="Hasło powinno zawierać od 6 do 20 znaków z co najmniej jedną cyfrą, jedną wielką literą, jedną małą literą i jednym symbolem specjalnym („@#$%”)"><f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})" /></h:inputSecret>
+    <br/>
+    <h:inputText type="text"  value="#{userBB.addres}" class="text"  p:placeholder="Ulica"  required="true" requiredMessage="podaj adres"/>
+    <br/>
+    <h:inputText type="text"  value="#{userBB.city}" class="text"  p:placeholder="Miasto"  required="true" requiredMessage="podaj miasto"/>
+    <br/>
+    <h:inputText type="text"  value="#{userBB.phone}" class="text"  p:placeholder="Numer telefonu"  required="true" requiredMessage="podaj phone" validatorMessage="Zły format numeru telefonu"><f:validateRegex pattern="^\d{9}$"/></h:inputText>
+    <br/>
+    
+    
+    <h:messages id="messages"/>
+    
+    <h:commandButton class="signin"  value="Zarejestruj" update="messages" action="#{userBB.doRegister()}"/>
+    <br/>
+        <br/>
+  </h:form>
+
+</div>
+		</div>
+
+</h:body>
+
+
+</html>

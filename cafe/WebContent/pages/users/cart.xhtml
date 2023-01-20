@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+
+<ui:composition template="/templates/page-template.xhtml">
+
+<style>
+footer{
+display: none;
+}
+#messageBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: green;
+    color: white;
+    padding: 1em;
+    border-radius: 10px;
+    display: none;
+}
+</style>
+	<ui:define name="pageContent">
+  <div id="loginbg">
+  
+  	<div id="cartBox">
+		<h1 id="cartHead">
+			Koszyk
+		</h1>
+		<h:form id="form-cart" style="margin-bottom:1em;">
+		<c:choose>
+		<c:when test="#{not empty shopingCartBB.retrieveCartItems()}">
+			<h:dataTable value="#{shopingCartBB.retrieveCartItems()}" var="p" id="itemstab">
+			
+				<h:column>
+					<f:facet name = "header">
+					<h:outputText value="Produkt" />
+					</f:facet> 
+							<h:outputText value="#{p.product.name}" id="nazw" />
+				</h:column>
+				<h:column>
+					<f:facet name = "header" class="priceitem">
+							<h:outputText value="Cena" />
+					</f:facet>
+					<h:outputText value="#{p.product.price}" />    
+				</h:column>
+				<h:column>
+					<f:facet name = "header" class="priceitem">
+							<h:outputText value="Ilość" />
+					</f:facet>
+					<h:outputText value="#{p.quantity}" />    
+				</h:column>
+				<h:column>
+					<f:facet name = "header" class="priceitem">
+					<h:outputText value="-1szt" />
+					</f:facet>
+					<h:commandLink action="#{shopingCartBB.quantityMinus(p)}"><h:graphicImage id="miusprod" value = "#{resource['template:img/minus.png']}" alt="-1item" ></h:graphicImage></h:commandLink>   
+				</h:column>
+				<h:column>
+					<f:facet name = "header" class="priceitem">
+					<h:outputText value="Delete" />
+					</f:facet>
+					<h:commandLink action="#{shopingCartBB.deleteProductFromCart(p)}"><h:graphicImage id="trashprod" value = "#{resource['template:img/trash.png']}" alt="delitem" ></h:graphicImage></h:commandLink>   
+				</h:column>
+
+				
+			</h:dataTable>
+			</c:when>
+			<c:otherwise>
+			<h1 id="cartInfo">
+			Koszyk jest pusty,<br/>
+			zachęcamy do zakupów :)
+			</h1>
+			</c:otherwise>
+			</c:choose>
+			</h:form>
+  </div>
+  <div id="orderBox">
+  		<h1 id="cartHead">
+			Podsumowanie
+		</h1>
+		
+		<h3 id="h3sumOfCart">Wartość zamówienia:</h3>
+		<h3 id="sumOfCart"><h:outputText style="text-align:center;" value="#{shopingCartBB.sumOfCart(shopingCartBB.retrieveCartItems())} "/></h3>
+		
+		<h:form id="form-cartt" >
+			<c:choose>
+			<c:when test="#{shopingCartBB.sumOfCart(shopingCartBB.retrieveCartItems()) == 0}">
+			<h:commandButton value="Złóż zamówienie" action="#{orderBB.nullCart()}"  id="placeOrder" />
+			</c:when>
+			<c:otherwise>
+			<h:commandButton value="Złóż zamówienie"  action="#{orderBB.createOrder(shopingCartBB.sumOfCart(shopingCartBB.retrieveCartItems()))}" id="placeOrder"/> 
+			</c:otherwise>
+			</c:choose>
+  		</h:form>
+  </div>
+  	</div>
+  
+
+<footer></footer>
+	</ui:define>
+
+
+</ui:composition>
+
+
+</html>
